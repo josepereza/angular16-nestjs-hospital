@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PacienteService } from 'src/app/services/paciente.service';
-import { FormControl, FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { Doctores } from 'src/app/interfaces/doctores';
 
 @Component({
@@ -21,9 +21,15 @@ export class PacienteComponent {
   pacienteId: any;
   formDoctores = new FormControl([], { nonNullable: true });
   formHospital = new FormControl([], { nonNullable: true });
+  formPatient = this.fb.group({
+    name:[''],
+    surname:[''],
+    dni:['']
+  })
   constructor(
     private pacienteSevice: PacienteService,
     private route: ActivatedRoute,
+    private fb: FormBuilder,
   ) {}
   ngOnInit() {
     this.pacienteSevice.getAllDoctors().subscribe((data: any) => {
@@ -38,7 +44,14 @@ export class PacienteComponent {
     this.patient$.subscribe((data) => {
       console.log(data);
       this.patient = data;
+      this.formPatient.setValue({
+        name:this.patient.name,
+        surname:this.patient.surname,
+        dni:this.patient.dni
+      })
     });
+
+   
   }
   enviarDoctores() {
   
@@ -69,5 +82,20 @@ export class PacienteComponent {
       this.patient = data;
     });
     })
+  }
+  enviarPatient(){
+    this.pacienteSevice.actualizaHospital(this.pacienteId,this.formPatient.value).subscribe(data=>{
+      this.patient$ = this.pacienteSevice.getOne(this.pacienteId);
+    this.patient$.subscribe((data) => {
+      console.log(data);
+      this.patient = data;
+    });
+    })
+  }
+
+  enviarTodo(){
+    this.enviarDoctores();
+    this.enviarHospital();
+    this.enviarPatient();
   }
 }

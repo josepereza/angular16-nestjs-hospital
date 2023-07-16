@@ -1,31 +1,70 @@
-<p>paciente works!</p>
-<div class="div" *ngIf="patient">
-    <span>Name : {{patient.name}}</span>
-<br>
-<span>Surname : {{patient.surname}}</span>
-<br>
-<span>Hospital: {{patient.hospital.name}}</span>
-<ul *ngFor="let item of patient.doctors">
-<li>{{item.name}}</li>
-</ul>
-</div>
+<div class="container">
+  <br /><br />
+  <h2>Paciente</h2>
+  <div class="div" *ngIf="patient">
+    <span><strong>Name :</strong> {{ patient.name }}</span>
+    <br />
+    <span><strong>Surname :</strong>   {{ patient.surname }}</span>
+    <br />
+    <span><strong>Hospital : </strong>  {{ patient.hospital.name }}</span>
+    <br>
+    <span> <strong>Doctores :</strong></span>
+    <ul *ngFor="let item of patient.doctors">
+      <li>{{ item.name }}</li>
+    </ul>
+  </div>
 
+  <form [formGroup]="formPatient" (ngSubmit)="enviarPatient()">
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>NOMBRE</mat-label>
+        <input matInput placeholder="Jose" formControlName="name" />
+      </mat-form-field>
+    </p>
 
-<mat-form-field>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>APELLIDOS</mat-label>
+        <input matInput placeholder="Perez" formControlName="surname" />
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input matInput placeholder="2747272471M" formControlName="dni" />
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="primary" type="submit">Enviar Paciente</button>
+  </form>
+
+  <mat-form-field>
     <mat-label>Cambiar Doctores</mat-label>
     <mat-select [formControl]="formDoctores" multiple>
-      <mat-option *ngFor="let item of midoctors" [value]="item.id">{{item.name}}</mat-option>
+      <mat-option *ngFor="let item of midoctors" [value]="item.id">{{
+        item.name
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <button (click)="enviarDoctores()" mat-button color="primary">Enviar</button>
-
+  <button (click)="enviarDoctores()" mat-raised-button color="primary">
+    Enviar Doctores
+  </button>
 
   <mat-form-field>
     <mat-label>Cambiar Hospital</mat-label>
-    <mat-select [formControl]="formHospital" >
-      <mat-option *ngFor="let item of hospitales" [value]="item.id">{{item.name}}</mat-option>
+    <mat-select [formControl]="formHospital">
+      <mat-option *ngFor="let item of hospitales" [value]="item.id">{{
+        item.name
+      }}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <button (click)="enviarHospital()" mat-button color="primary">Enviar</button>
+  <button (click)="enviarHospital()" mat-raised-button color="primary">
+    Enviar Hospital
+  </button>
+  <br /><br />
+  <button id="enviotodo" (click)="enviarTodo()" mat-raised-button color="warn">
+    Enviar Todo
+  </button>
+</div>
