@@ -1,0 +1,21 @@
+<h2>Listado pacientes</h2>
+<form>
+    <h4>mat-select</h4>
+    <mat-form-field>
+      <mat-label>Hospital</mat-label>
+      <mat-select [(ngModel)]="selectedValue" (ngModelChange)="seleccion($event)" name="hospital">
+        <mat-option *ngFor="let item of hospitales" [value]="item.name">
+          {{item.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+   
+  </form>
+<mat-card *ngFor="let item of pacientes">
+  <mat-card-content (click)="verPaciente(item.id)">
+    <span>{{item.name}}</span><span>{{" "}}</span>
+    <span>{{item.surname}}</span>
+    <br>
+    <span *ngIf="item.hospital !null">{{item.hospital.name}}</span>
+  </mat-card-content>
+</mat-card>

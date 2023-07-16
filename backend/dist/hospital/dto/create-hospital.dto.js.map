@@ -1,0 +1,1 @@
+{"version":3,"file":"create-hospital.dto.js","sourceRoot":"","sources":["../../../src/hospital/dto/create-hospital.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AACA,qCAKiB;AAIV,IAAM,iBAAiB,GAAvB,MAAM,iBAAiB;CAU7B,CAAA;AATC;IAAC,IAAA,gCAAsB,GAAE;;6CACd;AAEX;IAAC,IAAA,gBAAM,GAAE;;+CACI;AAEb;IAAC,IAAA,gBAAM,GAAE;;+CACI;AARF,iBAAiB;IAD7B,IAAA,gBAAM,GAAE;GACI,iBAAiB,CAU7B;AAVY,8CAAiB"}
