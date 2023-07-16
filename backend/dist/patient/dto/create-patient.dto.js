@@ -15,6 +15,10 @@ class CreatePatientDto {
 }
 __decorate([
     (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], CreatePatientDto.prototype, "hospitalId", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
 ], CreatePatientDto.prototype, "doctors", void 0);
 exports.CreatePatientDto = CreatePatientDto;

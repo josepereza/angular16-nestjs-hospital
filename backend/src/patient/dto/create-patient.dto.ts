@@ -5,6 +5,7 @@ export class CreatePatientDto {
   name: string;
   surname: string;
   dni: string;
+  @IsOptional()
   hospitalId: number;
 
   @IsOptional()

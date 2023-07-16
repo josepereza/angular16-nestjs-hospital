@@ -68,12 +68,16 @@ export class PacienteComponent {
     this.pacienteSevice
       .actualizaDoctors(this.pacienteId, this.array)
       .subscribe((data) => {
-        console.log(data);
+        this.patient$ = this.pacienteSevice.getOne(this.pacienteId);
+    this.patient$.subscribe((data) => {
+      console.log(data);
+      this.patient = data;
+    });
       });
   }
   enviarHospital(){
     const objeto={hospital:{id: this.formHospital.value}}
-    console.log(objeto)
+    console.log('en enviar hospital',objeto)
     const id=this.formHospital.value
     this.pacienteSevice.actualizaHospital(this.pacienteId,objeto).subscribe(data=>{
       this.patient$ = this.pacienteSevice.getOne(this.pacienteId);
@@ -93,9 +97,6 @@ export class PacienteComponent {
     })
   }
 
-  enviarTodo(){
-    this.enviarDoctores();
-    this.enviarHospital();
-    this.enviarPatient();
-  }
+  
+  
 }

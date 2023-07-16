@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Subject, filter } from 'rxjs';
+import { Pacientes } from 'src/app/interfaces/pacientes';
 import { PacienteService } from 'src/app/services/paciente.service';
 
 @Component({
@@ -8,26 +9,34 @@ import { PacienteService } from 'src/app/services/paciente.service';
   templateUrl: './pacientes.component.html',
   styleUrls: ['./pacientes.component.css'],
 })
-export class PacientesComponent implements OnInit {
+export class PacientesComponent implements OnInit, AfterViewInit{
+  
   constructor(
     private pacienteService: PacienteService,
     private router: Router,
-  ) {}
+  ) {
+   
+  }
+  ngAfterViewInit(): void {
+  
+  }
   selectedValue!: string;
 
   pacientes: any[] = [];
   hospitales: any[] = [];
 
   ngOnInit(): void {
+    this.pacienteService.getAll().subscribe(data=>{
+      this.pacientes=data
+    console.log('pacientes en pacientes-component',this.pacientes)
+     
+    })
           
 this.pacienteService.getAllHospital().subscribe((data:any)=>{
   this.hospitales=data;
 })
 
- this.pacienteService.getAll().subscribe((data: any) => {
-  console.log(data);
-  this.pacientes = data; 
-}) 
+ 
 
 
     };

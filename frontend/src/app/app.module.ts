@@ -13,8 +13,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import { CrearPacienteComponent } from './pages/crear-paciente/crear-paciente.component';
 @NgModule({
-  declarations: [AppComponent, PacientesComponent, PacienteComponent],
+  declarations: [AppComponent, PacientesComponent, PacienteComponent, CrearPacienteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

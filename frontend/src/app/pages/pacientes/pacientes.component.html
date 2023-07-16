@@ -1,6 +1,7 @@
 <h2>Listado pacientes</h2>
+<a mat-raised-button color="primary" routerLink="/crearPaciente">Nuevo Paciente</a>
 <form>
-    <h4>mat-select</h4>
+  
     <mat-form-field>
       <mat-label>Hospital</mat-label>
       <mat-select [(ngModel)]="selectedValue" (ngModelChange)="seleccion($event)" name="hospital">

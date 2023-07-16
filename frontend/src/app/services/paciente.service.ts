@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Pacientes } from '../interfaces/pacientes';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PacienteService {
+  
   constructor(private http: HttpClient) {}
 
   getAll():Observable<Pacientes[]> {
@@ -33,5 +34,8 @@ export class PacienteService {
   actualizaHospital(id:any,hospital:any){
     return this.http.patch(`http://localhost:3000/patient/${id}`,hospital)
 
+  }
+  creaPaciente(paciente:any){
+    return this.http.post('http://localhost:3000/patient',paciente)
   }
 }
