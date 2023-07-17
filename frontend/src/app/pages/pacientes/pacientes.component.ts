@@ -15,7 +15,11 @@ export class PacientesComponent implements OnInit, AfterViewInit{
     private pacienteService: PacienteService,
     private router: Router,
   ) {
-   
+    this.pacienteService.getAll().subscribe(data=>{
+      this.pacientes=data
+    console.log('pacientes en pacientes-component',this.pacientes)
+     
+    })
   }
   ngAfterViewInit(): void {
   
@@ -26,11 +30,7 @@ export class PacientesComponent implements OnInit, AfterViewInit{
   hospitales: any[] = [];
 
   ngOnInit(): void {
-    this.pacienteService.getAll().subscribe(data=>{
-      this.pacientes=data
-    console.log('pacientes en pacientes-component',this.pacientes)
-     
-    })
+    
           
 this.pacienteService.getAllHospital().subscribe((data:any)=>{
   this.hospitales=data;

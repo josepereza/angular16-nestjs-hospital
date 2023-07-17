@@ -8,7 +8,7 @@
       <br />
       <span *ngIf="patient.hospital"><strong>Hospital : </strong>  {{ patient.hospital.name }}</span>
       <br>
-      <span> <strong>Doctores :</strong></span>
+      <span > <strong>Doctores :</strong></span>
       <ul *ngFor="let item of patient.doctors">
         <li>{{ item.name }}</li>
       </ul>
@@ -61,5 +61,7 @@
     <button id="enviotodo" (click)="enviarPatient()" mat-raised-button color="warn">
       Enviar 
     </button>
+
+    <a mat-raised-button color="primary"  routerLink="/pacientes">Regresar</a>
   </div>
   

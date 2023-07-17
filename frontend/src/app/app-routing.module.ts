@@ -5,6 +5,7 @@ import { PacienteComponent } from './pages/paciente/paciente.component';
 import { CrearPacienteComponent } from './pages/crear-paciente/crear-paciente.component';
 
 const routes: Routes = [
+  {path:'',redirectTo:'pacientes', pathMatch:"full"},
   { path: 'pacientes', component: PacientesComponent },
   { path: 'paciente/:id', component: PacienteComponent },
   { path: 'crearPaciente', component: CrearPacienteComponent },
