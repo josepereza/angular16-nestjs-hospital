@@ -6,6 +6,7 @@ import { Doctor } from 'src/doctor/entities/doctor.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Hospital } from 'src/hospital/entities/hospital.entity';
+import { In } from "typeorm"
 
 @Injectable()
 export class PatientService {
@@ -135,5 +136,12 @@ export class PatientService {
       return await this.patientRepository.save(paciente);
     }
     throw new HttpException('Registros no encontrados', HttpStatus.NOT_FOUND);
+  }
+  async buscardoctores(body){
+    const doctorIds=body.doctorIds
+   return await this.doctorRepository.findBy(
+{  id:In(doctorIds)  } 
+    )
+
   }
 }

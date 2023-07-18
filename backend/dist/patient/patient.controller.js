@@ -47,6 +47,9 @@ let PatientController = class PatientController {
     assingDoctor(patientId, doctorId) {
         return this.patientService.assignDoctor(patientId, doctorId);
     }
+    buscarDoctores(doctorIds) {
+        return this.patientService.buscardoctores(doctorIds);
+    }
 };
 __decorate([
     (0, common_1.Get)('seed'),
@@ -105,6 +108,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", void 0)
 ], PatientController.prototype, "assingDoctor", null);
+__decorate([
+    (0, common_1.Post)('doctores'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], PatientController.prototype, "buscarDoctores", null);
 PatientController = __decorate([
     (0, common_1.Controller)('patient'),
     __metadata("design:paramtypes", [patient_service_1.PatientService])

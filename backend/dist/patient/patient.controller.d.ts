@@ -13,4 +13,5 @@ export declare class PatientController {
     update2(id: string, doctors: Doctor[]): Promise<import("./entities/patient.entity").Patient>;
     remove(id: string): string;
     assingDoctor(patientId: number, doctorId: any): Promise<import("./entities/patient.entity").Patient>;
+    buscarDoctores(doctorIds: any): Promise<Doctor[]>;
 }

@@ -50,6 +50,7 @@ export class PatientController {
     return this.patientService.updateDoctors(+id, doctors);
   }
 
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.patientService.remove(+id);
@@ -62,4 +63,14 @@ export class PatientController {
   ) {
     return this.patientService.assignDoctor(patientId, doctorId);
   }
+
+  //prueba para buscar varios doctores
+  @Post('doctores')
+  buscarDoctores(
+  
+    @Body() doctorIds: any,
+  ) {
+   
+    return this.patientService.buscardoctores(doctorIds)
+}
 }

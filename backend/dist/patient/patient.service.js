@@ -19,6 +19,7 @@ const doctor_entity_1 = require("../doctor/entities/doctor.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const hospital_entity_1 = require("../hospital/entities/hospital.entity");
+const typeorm_3 = require("typeorm");
 let PatientService = class PatientService {
     constructor(patientRepository, doctorRepository, hospitalRepository) {
         this.patientRepository = patientRepository;
@@ -124,6 +125,10 @@ let PatientService = class PatientService {
             return await this.patientRepository.save(paciente);
         }
         throw new common_1.HttpException('Registros no encontrados', common_1.HttpStatus.NOT_FOUND);
+    }
+    async buscardoctores(body) {
+        const doctorIds = body.doctorIds;
+        return await this.doctorRepository.findBy({ id: (0, typeorm_3.In)(doctorIds) });
     }
 };
 PatientService = __decorate([
