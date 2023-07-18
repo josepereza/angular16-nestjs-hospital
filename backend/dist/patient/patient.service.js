@@ -94,16 +94,15 @@ let PatientService = class PatientService {
     update(id, updatePatientDto) {
         return this.patientRepository.update({ id }, Object.assign({}, updatePatientDto));
     }
-    async updateDoctors(id, doctors) {
-        console.log('este es el array', doctors);
-        for (const item in doctors) {
-            console.log(doctors[item]);
-        }
+    async updateDoctors(id, body) {
+        console.log('mi body', body);
+        const doctorIds = body;
+        const doctores = await this.doctorRepository.findBy({ id: (0, typeorm_3.In)(doctorIds) });
         const paciente = await this.patientRepository.findOne({
             where: { id },
             relations: { doctors: true, hospital: true },
         });
-        paciente.doctors = doctors;
+        paciente.doctors = doctores;
         return await this.patientRepository.save(paciente);
     }
     remove(id) {

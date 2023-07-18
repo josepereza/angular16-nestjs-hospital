@@ -36,10 +36,10 @@ let PatientController = class PatientController {
     update(id, updatePatientDto) {
         return this.patientService.update(+id, updatePatientDto);
     }
-    update2(id, doctors) {
+    update2(id, doctorIds) {
         console.log('actualiza doctores');
-        console.log('docltores en patient-controller', doctors);
-        return this.patientService.updateDoctors(+id, doctors);
+        console.log('docltores en patient-controller', doctorIds);
+        return this.patientService.updateDoctors(+id, doctorIds);
     }
     remove(id) {
         return this.patientService.remove(+id);

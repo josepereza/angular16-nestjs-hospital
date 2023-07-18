@@ -95,21 +95,21 @@ export class PatientService {
   }
 
   // Aqui actualizamos los doctores de un paciente
-  async updateDoctors(id: number, doctors: any) {
-    console.log('este es el array', doctors);
-
-    for (const item in doctors) {
-      console.log(doctors[item]);
-
-     
-    }
+  async updateDoctors(id: number, body: any) {
+    console.log('mi body', body)
+    const doctorIds=body
+    const doctores= await this.doctorRepository.findBy(
+ {  id:In(doctorIds)  } 
+     )
+ 
+   
     const paciente = await this.patientRepository.findOne({
       where: { id },
       relations: { doctors: true, hospital: true },
     });
        
   
-    paciente.doctors = doctors;
+    paciente.doctors = doctores;
 
     return await this.patientRepository.save(paciente);
   }

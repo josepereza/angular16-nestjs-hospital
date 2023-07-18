@@ -15,7 +15,7 @@ export declare class PatientService {
     findAll(): Promise<Patient[]>;
     findOne(id: number): Promise<Patient>;
     update(id: number, updatePatientDto: UpdatePatientDto): Promise<import("typeorm").UpdateResult>;
-    updateDoctors(id: number, doctors: any): Promise<Patient>;
+    updateDoctors(id: number, body: any): Promise<Patient>;
     remove(id: number): string;
     assignDoctor(patient_id: any, doctor_id: any): Promise<Patient>;
     buscardoctores(body: any): Promise<Doctor[]>;

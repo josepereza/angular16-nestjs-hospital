@@ -44,10 +44,10 @@ export class PatientController {
  
   // actualizamos los doctores de un paciente
   @Post(':id/doctors')
-  update2(@Param('id') id: string, @Body() doctors: Doctor[]) {
+  update2(@Param('id') id: string, @Body() doctorIds: number[]) {
     console.log('actualiza doctores')
-    console.log('docltores en patient-controller', doctors)
-    return this.patientService.updateDoctors(+id, doctors);
+    console.log('docltores en patient-controller', doctorIds)
+    return this.patientService.updateDoctors(+id, doctorIds);
   }
 
 

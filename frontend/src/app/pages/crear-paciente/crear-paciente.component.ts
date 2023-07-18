@@ -41,16 +41,9 @@ export class CrearPacienteComponent {
     console.log('pacienteid en enviar doctores', this.pacienteId);
 
     console.log('formdoctoes.value', this.formDoctores.value);
-    this.formDoctores.value.forEach((doctorId) => {
-      console.log('element', doctorId);
-      //const miobjeto2 = {id:element}
-
-      this.array.push({ id: doctorId });
-    });
-
-    console.log('miobjeto ', this.array);
+   
     this.pacienteSevice
-      .actualizaDoctors(this.pacienteId, this.array)
+      .actualizaDoctors(this.pacienteId, this.formDoctores.value)
       .subscribe((data) => {
        this.pacienteSevice.getOne(this.pacienteId).subscribe(paciente=>{
         this.patient=paciente

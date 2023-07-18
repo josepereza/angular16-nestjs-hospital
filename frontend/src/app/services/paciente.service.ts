@@ -23,9 +23,9 @@ export class PacienteService {
   }
 
   
-  actualizaDoctors(id:any, doctores:any) {
-    console.log('mis doctores',doctores)
-    return this.http.post(`http://localhost:3000/patient/${id}/doctors`, doctores);
+  actualizaDoctors(id:any, doctorIds:any) {
+    console.log('mis doctores',doctorIds)
+    return this.http.post(`http://localhost:3000/patient/${id}/doctors`, doctorIds);
   }
 
   getAllHospital(){
