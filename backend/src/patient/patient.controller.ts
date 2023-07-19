@@ -37,10 +37,10 @@ export class PatientController {
     return this.patientService.findOne(+id);
   }
 
-  @Patch(':id')
+ /*  @Patch(':id')
   update(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto) {
     return this.patientService.update(+id, updatePatientDto);
-  }
+  } */
  
   // actualizamos los doctores de un paciente
   @Post(':id/doctors')

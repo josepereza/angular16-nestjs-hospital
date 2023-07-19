@@ -6,12 +6,11 @@ import { Doctor } from 'src/doctor/entities/doctor.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Hospital } from 'src/hospital/entities/hospital.entity';
-import { In } from "typeorm"
+import { In } from 'typeorm';
 
 @Injectable()
 export class PatientService {
-
-  doctorObjet={}
+  doctorObjet = {};
   constructor(
     @InjectRepository(Patient) private patientRepository: Repository<Patient>,
     @InjectRepository(Doctor) private doctorRepository: Repository<Doctor>,
@@ -55,16 +54,20 @@ export class PatientService {
   }
 
   async create(createPatientDto: CreatePatientDto) {
-    const { name, surname, dni, doctors } = createPatientDto;
+    const { name, surname, dni, doctors, hospitalId } = createPatientDto;
     const hospital = await this.hospitalRepository.findOne({
       where: { id: createPatientDto.hospitalId },
+    });
+
+    const doctores = await this.doctorRepository.findBy({
+      id: In(doctors),
     });
     const newPatient = this.patientRepository.create({
       name,
       surname,
       dni,
       hospital,
-      doctors,
+      doctors : doctores,
     });
     return this.patientRepository.save(newPatient);
   }
@@ -90,25 +93,21 @@ export class PatientService {
     });
   }
 
-  update(id: number, updatePatientDto: UpdatePatientDto) {
+ /*  update(id: number, updatePatientDto: UpdatePatientDto) {
     return this.patientRepository.update({ id }, { ...updatePatientDto });
-  }
+  } */
 
   // Aqui actualizamos los doctores de un paciente
   async updateDoctors(id: number, body: any) {
-    console.log('mi body', body)
-    const doctorIds=body
-    const doctores= await this.doctorRepository.findBy(
- {  id:In(doctorIds)  } 
-     )
- 
-   
+    console.log('mi body', body);
+    const doctorIds = body;
+    const doctores = await this.doctorRepository.findBy({ id: In(doctorIds) });
+
     const paciente = await this.patientRepository.findOne({
       where: { id },
       relations: { doctors: true, hospital: true },
     });
-       
-  
+
     paciente.doctors = doctores;
 
     return await this.patientRepository.save(paciente);
@@ -137,11 +136,8 @@ export class PatientService {
     }
     throw new HttpException('Registros no encontrados', HttpStatus.NOT_FOUND);
   }
-  async buscardoctores(body){
-    const doctorIds=body.doctorIds
-   return await this.doctorRepository.findBy(
-{  id:In(doctorIds)  } 
-    )
-
+  async buscardoctores(body) {
+    const doctorIds = body.doctorIds;
+    return await this.doctorRepository.findBy({ id: In(doctorIds) });
   }
 }

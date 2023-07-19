@@ -9,5 +9,5 @@ export class CreatePatientDto {
   hospitalId: number;
 
   @IsOptional()
-  doctors: Doctor[];
+  doctors: Array<number>;
 }

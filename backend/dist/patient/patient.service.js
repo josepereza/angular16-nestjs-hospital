@@ -59,16 +59,19 @@ let PatientService = class PatientService {
         return '2 registros agregados';
     }
     async create(createPatientDto) {
-        const { name, surname, dni, doctors } = createPatientDto;
+        const { name, surname, dni, doctors, hospitalId } = createPatientDto;
         const hospital = await this.hospitalRepository.findOne({
             where: { id: createPatientDto.hospitalId },
+        });
+        const doctores = await this.doctorRepository.findBy({
+            id: (0, typeorm_3.In)(doctors),
         });
         const newPatient = this.patientRepository.create({
             name,
             surname,
             dni,
             hospital,
-            doctors,
+            doctors: doctores,
         });
         return this.patientRepository.save(newPatient);
     }
@@ -90,9 +93,6 @@ let PatientService = class PatientService {
                 hospital: true,
             },
         });
-    }
-    update(id, updatePatientDto) {
-        return this.patientRepository.update({ id }, Object.assign({}, updatePatientDto));
     }
     async updateDoctors(id, body) {
         console.log('mi body', body);
