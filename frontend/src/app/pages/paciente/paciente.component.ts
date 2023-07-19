@@ -30,7 +30,8 @@ export class PacienteComponent {
     name: [''],
     surname: [''],
     dni: [''],
-    hospitalId: [null],
+    hospitalId: [0],
+    doctors: [[0]]
   });
   constructor(
     private pacienteSevice: PacienteService,
@@ -54,7 +55,8 @@ export class PacienteComponent {
         name: this.patient.name,
         surname: this.patient.surname,
         dni: this.patient.dni,
-        hospitalId: this.patient.hospital.id
+        hospitalId: this.patient.hospital.id,
+        doctors:this.patient.doctors
       });
     });
   }

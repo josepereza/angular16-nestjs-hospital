@@ -9,7 +9,7 @@ export declare class PatientController {
     create(createPatientDto: CreatePatientDto): Promise<import("./entities/patient.entity").Patient>;
     findAll(): Promise<import("./entities/patient.entity").Patient[]>;
     findOne(id: string): Promise<import("./entities/patient.entity").Patient>;
-    updatePaciente(id: string, updatePatientDto: UpdatePatientDto): Promise<import("typeorm").UpdateResult>;
+    updatePaciente(id: string, updatePatientDto: UpdatePatientDto): Promise<import("./entities/patient.entity").Patient>;
     update2(id: string, doctorIds: number[]): Promise<import("./entities/patient.entity").Patient>;
     remove(id: string): string;
     assingDoctor(patientId: number, doctorId: any): Promise<import("./entities/patient.entity").Patient>;

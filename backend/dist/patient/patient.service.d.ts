@@ -13,7 +13,7 @@ export declare class PatientService {
     create(createPatientDto: CreatePatientDto): Promise<Patient>;
     findAll(): Promise<Patient[]>;
     findOne(id: number): Promise<Patient>;
-    updatePaciente(id: number, updatePatientDto: any): Promise<import("typeorm").UpdateResult>;
+    updatePaciente(id: number, updatePatientDto: any): Promise<Patient>;
     update(id: number, updatePatientDto: number): Promise<Patient>;
     updateDoctors(id: number, body: any): Promise<Patient>;
     remove(id: number): string;

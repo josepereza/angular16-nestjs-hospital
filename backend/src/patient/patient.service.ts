@@ -96,7 +96,7 @@ export class PatientService {
   //actualiza el paciente
   async updatePaciente(id: number, updatePatientDto: any) {
     console.log('actualiza paciente ',updatePatientDto)
-    const { name, surname, dni, hospitalId } = updatePatientDto;
+    const { name, surname, dni, hospitalId,doctors } = updatePatientDto;
     const mihospital = await this.hospitalRepository.findOne({
       where: { id: hospitalId },
     });
@@ -104,13 +104,16 @@ export class PatientService {
       where: { id },
      
     });
-    console.log('mihospital/paciente', mihospital,paciente)
+
+    const doctorIds = doctors;
+    const doctores = await this.doctorRepository.findBy({ id: In(doctorIds) });
+    console.log('mihospital/paciente', mihospital,paciente,doctores)
     paciente.name = name;
     paciente.surname = surname;
     paciente.dni = dni;
     paciente.hospital=mihospital;
-    
-    return this.patientRepository.update({ id }, paciente);
+    paciente.doctors=doctores;
+    return this.patientRepository.save(paciente);
   }
   //actualiza el hospital
   async update(id: number, updatePatientDto: number) {

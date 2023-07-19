@@ -45,21 +45,19 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Cambiar Doctores</mat-label>
+      <mat-select formControlName="doctors" multiple>
+        <mat-option *ngFor="let item of midoctors" [value]="item.id">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Enviar Paciente</button>
   </form>
 
-  <mat-form-field>
-    <mat-label>Cambiar Doctores</mat-label>
-    <mat-select [formControl]="formDoctores" multiple>
-      <mat-option *ngFor="let item of midoctors" [value]="item.id">{{
-        item.name
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button (click)="enviarDoctores()" mat-raised-button color="primary">
-    Enviar Doctores
-  </button>
+ 
 <br>
   
   <br /><br />
