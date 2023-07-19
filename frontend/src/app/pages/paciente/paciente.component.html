@@ -36,6 +36,15 @@
         <input matInput placeholder="2747272471M" formControlName="dni" />
       </mat-form-field>
     </p>
+
+    <mat-form-field>
+      <mat-label>Cambiar Hospital</mat-label>
+      <mat-select formControlName="hospitalId">
+        <mat-option *ngFor="let item of hospitales" [value]="item.id">{{
+          item.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Enviar Paciente</button>
   </form>
 
@@ -52,18 +61,7 @@
     Enviar Doctores
   </button>
 <br>
-  <mat-form-field>
-    <mat-label>Cambiar Hospital</mat-label>
-    <mat-select [formControl]="formHospital">
-      <mat-option *ngFor="let item of hospitales" [value]="item.id">{{
-        item.name
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <button (click)="enviarHospital()" mat-raised-button color="primary">
-    Enviar Hospital
-  </button>
+  
   <br /><br />
  
 <br><br>

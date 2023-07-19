@@ -36,11 +36,18 @@ export class PatientController {
   findOne(@Param('id') id: string) {
     return this.patientService.findOne(+id);
   }
-
- /*  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto) {
+   //actualiza hospital
+  /*  @Patch('hospital/:id')
+   update(@Param('id') id: string, @Body() updatePatientDto: any) {
+    console.log('actualiza hosptial en patinen.control')
     return this.patientService.update(+id, updatePatientDto);
-  } */
+  }  */
+
+  //actualiza paciente
+  @Patch(':id')
+  updatePaciente(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto) {
+    return this.patientService.updatePaciente(+id, updatePatientDto);
+  } 
  
   // actualizamos los doctores de un paciente
   @Post(':id/doctors')

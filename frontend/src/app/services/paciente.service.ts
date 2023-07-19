@@ -31,7 +31,16 @@ export class PacienteService {
   getAllHospital(){
     return this.http.get('http://localhost:3000/hospital')
   }
-  actualizaHospital(id:any,hospital:any){
+  actualizaHospital(id:any,hospital:number){
+    console.log(id,hospital)
+    return this.http.patch(`http://localhost:3000/patient/hospital/${id}`,hospital)
+
+  }
+
+  
+
+  
+  actualizaPaciente(id:any,hospital:any){
     return this.http.patch(`http://localhost:3000/patient/${id}`,hospital)
 
   }

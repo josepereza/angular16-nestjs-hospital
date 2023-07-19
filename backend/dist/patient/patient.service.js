@@ -94,6 +94,34 @@ let PatientService = class PatientService {
             },
         });
     }
+    async updatePaciente(id, updatePatientDto) {
+        console.log('actualiza paciente ', updatePatientDto);
+        const { name, surname, dni, hospitalId } = updatePatientDto;
+        const mihospital = await this.hospitalRepository.findOne({
+            where: { id: hospitalId },
+        });
+        const paciente = await this.patientRepository.findOne({
+            where: { id },
+        });
+        console.log('mihospital/paciente', mihospital, paciente);
+        paciente.name = name;
+        paciente.surname = surname;
+        paciente.dni = dni;
+        paciente.hospital = mihospital;
+        return this.patientRepository.update({ id }, paciente);
+    }
+    async update(id, updatePatientDto) {
+        console.log('actualiza hospital', updatePatientDto);
+        const mihospital = await this.hospitalRepository.findOne({
+            where: { id: updatePatientDto },
+        });
+        const paciente = await this.patientRepository.findOne({
+            where: { id },
+            relations: { doctors: true, hospital: true },
+        });
+        paciente.hospital = mihospital;
+        return this.patientRepository.save(paciente);
+    }
     async updateDoctors(id, body) {
         console.log('mi body', body);
         const doctorIds = body;
