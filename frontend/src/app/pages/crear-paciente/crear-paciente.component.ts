@@ -16,12 +16,13 @@ export class CrearPacienteComponent {
   midoctors: any[] = [];
   hospitales: any[] = [];
   pacienteId: any;
-  formDoctores = new FormControl([], { nonNullable: true });
-  formHospital = new FormControl(1, { nonNullable: true });
+  
   formPatient = this.fb.group({
     name: [''],
     surname: [''],
     dni: [''],
+    hospitalId:[null],
+    doctors:[[]]
   });
   constructor(
     private pacienteSevice: PacienteService,
@@ -37,40 +38,12 @@ export class CrearPacienteComponent {
       this.hospitales = data;
     });
   }
-  enviarDoctores() {
-    console.log('pacienteid en enviar doctores', this.pacienteId);
-
-    console.log('formdoctoes.value', this.formDoctores.value);
-   
-    this.pacienteSevice
-      .actualizaDoctors(this.pacienteId, this.formDoctores.value)
-      .subscribe((data) => {
-       this.pacienteSevice.getOne(this.pacienteId).subscribe(paciente=>{
-        this.patient=paciente
-       })
-      });
-  }
-  enviarHospital() {
-    const objeto = { hospital: { id: this.formHospital.value } };
-    console.log(objeto);
-    const id = this.formHospital.value;
-    this.pacienteSevice
-      .actualizaHospital(this.pacienteId, objeto)
-      .subscribe((data) => {
-        this.patient$ = this.pacienteSevice.getOne(this.pacienteId);
-        this.patient$.subscribe((data: any) => {
-          console.log(data);
-          this.patient = data;
-        });
-      });
-  }
+  
   enviarPatient() {
     this.pacienteSevice
       .creaPaciente(this.formPatient.value)
       .subscribe((data: any) => {
-        this.pacienteId = data.id;
-        this.enviarDoctores();
-        this.enviarHospital();
+       console.log('envio paciente', data)
 
         
        

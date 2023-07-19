@@ -36,6 +36,7 @@ export class PacienteService {
 
   }
   creaPaciente(paciente:any){
+    console.log('mi paciente', paciente)
     return this.http.post('http://localhost:3000/patient',paciente)
   }
 }
